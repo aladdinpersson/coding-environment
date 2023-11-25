@@ -38,20 +38,27 @@ install_miniconda() {
     rm $MINICONDA_SCRIPT
 }
 
-install_node() {
+install_nodejs_and_npm() {
     echo "Downloading and importing the NodeSource GPG key..."
     sudo apt-get update
-    sudo apt-get install -y ca-certificates curl gnupg
+    sudo apt-get install -y ca-certificates curl gnupg lsb-release # included lsb-release
     sudo mkdir -p /etc/apt/keyrings
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 
     echo "Creating NodeSource deb repository..."
-    NODE_MAJOR=16 # Change this as needed, e.g. to 18, 20, or 21
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+    NODE_MAJOR=16 # Change this as needed, e.g., to 18, 20, or the latest LTS
+    DISTRO="$(lsb_release -s -c)" # Get the distribution codename
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x $DISTRO main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+    echo "deb-src [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x $DISTRO main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
 
-    echo "Installing Node.js..."
+    echo "Installing Node.js and npm..."
     sudo apt-get update
-    sudo apt-get install -y nodejs npm
+    sudo apt-get install -y nodejs # npm is included with Node.js from NodeSource
+
+    # Verify the installation
+    echo "Node.js and npm have been installed:"
+    node --version
+    npm --version
 }
 
 # Install TMUX
@@ -150,7 +157,7 @@ main() {
     install_zsh
     install_oh_my_zsh
     install_miniconda
-    install_node
+    install_nodejs_and_npm
     install_tmux
     install_neovim
     create_symbolic_links
