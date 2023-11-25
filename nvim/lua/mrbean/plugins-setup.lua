@@ -32,6 +32,28 @@ end
 return packer.startup(function(use)
 	-- packer can manage itself
 	use("wbthomason/packer.nvim")
+
+	use({
+        'williamboman/mason.nvim',
+        config = function()
+            require("mason").setup()
+            require("mason").ensure_installed({
+                'black',
+                'css-lsp',
+                'emmet-ls',
+                'eslint_d',
+                'html-lsp',
+                'jedi-language-server',
+                'lua-language-server',
+                'prettier',
+                'rust-analyzer',
+                'stylua',
+                'tailwindcss-language-server',
+                'typescript-language-server',
+            })
+        end,
+    })
+
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 	use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
