@@ -141,12 +141,6 @@ install_github_copilot() {
 
 # Install GitHub Copilot CLI
 install_copilot_cli() {
-    echo "Installing Node.js..."
-    sudo apt-get install -y nodejs
-
-    echo "Installing npm..."
-    sudo apt-get install -y npm
-
     echo "Installing GitHub Copilot CLI..."
     sudo npm install -g @githubnext/github-copilot-cli
 }
