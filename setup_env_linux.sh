@@ -7,8 +7,6 @@ update_and_upgrade() {
     sudo apt-get upgrade -y
     echo "installing cmake..." 
     sudo apt install build-essential cmake -y
-
-
 }
 
 # Install zsh and make it your main shell
@@ -50,10 +48,10 @@ install_tmux() {
     sudo apt install -y tmux
 }
 
-# Install Neovim
+# Install Neovim from the unstable PPA
 install_neovim() {
-    # Add the official Neovim PPA
-    sudo add-apt-repository -y ppa:neovim-ppa/stable
+    # Add the official Neovim 'unstable' PPA
+    sudo add-apt-repository -y ppa:neovim-ppa/unstable
     
     # Update the package lists
     sudo apt update
@@ -119,8 +117,8 @@ reload_tmux_config() {
     fi
 }
 
-# Add Github Copilot to Neovim
-add_github_copilot() {
+# Install Github Copilot to Neovim
+install_github_copilot() {
     local COPILOT_DIR="$HOME/.config/nvim/pack/github/start/copilot.vim"
     if [[ ! -d $COPILOT_DIR ]]; then
         mkdir -p $HOME/.config/nvim/pack/github/start
@@ -128,6 +126,18 @@ add_github_copilot() {
     else
         echo "Github Copilot directory already exists. Skipping clone."
     fi
+}
+
+# Install GitHub Copilot CLI
+install_copilot_cli() {
+    echo "Installing Node.js..."
+    sudo apt-get install -y nodejs
+
+    echo "Installing npm..."
+    sudo apt-get install -y npm
+
+    echo "Installing GitHub Copilot CLI..."
+    sudo npm install -g @githubnext/github-copilot-cli
 }
 
 main() {
@@ -143,9 +153,10 @@ main() {
     install_zsh_autosuggestions
     install_powerlevel10k
     install_tpm
-    add_github_copilot
     source_zsh_config
     reload_tmux_config
+    install_github_copilot
+    install_copilot_cli
 }
 
 main
