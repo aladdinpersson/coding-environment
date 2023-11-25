@@ -84,10 +84,10 @@ create_symbolic_links() {
         mkdir -p "$HOME/.config"
     fi
 
-    # Create symbolic links
-    ln -sf $DIR/.zshrc ~/.zshrc
-    ln -sf $DIR/.tmux.conf ~/.tmux.conf
-    ln -sf $DIR/nvim ~/.config/nvim
+    # Create symbolic links with proper quoting and the -n flag on ln
+    ln -sfn "$DIR/.zshrc" "$HOME/.zshrc"
+    ln -sfn "$DIR/.tmux.conf" "$HOME/.tmux.conf"
+    ln -sfn "$DIR/nvim" "$HOME/.config/nvim"
 }
 
 # Clone the zsh-syntax-highlighting plugin
