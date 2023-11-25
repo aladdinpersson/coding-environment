@@ -64,7 +64,15 @@ install_neovim() {
 
 # Create symbolic links
 create_symbolic_links() {
+    # Get the directory of the current script
     DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+    # Ensure the .config directory exists
+    if [ ! -d "$HOME/.config" ]; then
+        mkdir -p "$HOME/.config"
+    fi
+
+    # Create symbolic links
     ln -sf $DIR/.zshrc ~/.zshrc
     ln -sf $DIR/.tmux.conf ~/.tmux.conf
     ln -sf $DIR/nvim ~/.config/nvim
