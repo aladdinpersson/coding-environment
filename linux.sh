@@ -38,9 +38,20 @@ install_miniconda() {
     rm $MINICONDA_SCRIPT
 }
 
-# Install node.js 
 install_node() {
-    sudo apt install -y nodejs
+    echo "Downloading and importing the NodeSource GPG key..."
+    sudo apt-get update
+    sudo apt-get install -y ca-certificates curl gnupg
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+    echo "Creating NodeSource deb repository..."
+    NODE_MAJOR=16 # Change this as needed, e.g. to 18, 20, or 21
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+
+    echo "Installing Node.js..."
+    sudo apt-get update
+    sudo apt-get install -y nodejs
 }
 
 # Install TMUX
