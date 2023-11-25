@@ -51,7 +51,7 @@ install_node() {
 
     echo "Installing Node.js..."
     sudo apt-get update
-    sudo apt-get install -y nodejs
+    sudo apt-get install -y nodejs npm
 }
 
 # Install TMUX
