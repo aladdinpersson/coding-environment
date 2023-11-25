@@ -38,18 +38,16 @@ return packer.startup(function(use)
         config = function()
             require("mason").setup()
             require("mason").ensure_installed({
-                'black',
-                'css-lsp',
-                'emmet-ls',
-                'eslint_d',
-                'html-lsp',
-                'jedi-language-server',
-                'lua-language-server',
-                'prettier',
-                'rust-analyzer',
-                'stylua',
-                'tailwindcss-language-server',
-                'typescript-language-server',
+                'black',                 -- Python formatter
+                'cssls',                 -- CSS Language Server
+                'emmet_ls',              -- Emmet Language Server
+                'eslint',                -- ESLint Language Server
+                'eslint_d',              -- ESLint Language Server (daemon)
+                'html',                  -- HTML Language Server
+                'jedi_language_server',  -- Jedi Language Server for Python
+                'rust_analyzer',         -- Rust Analyzer
+                'tailwindcss',           -- Tailwind CSS Language Server
+                'tsserver',              -- TypeScript Language Server
             })
         end,
     })
