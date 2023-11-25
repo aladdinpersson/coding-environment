@@ -123,6 +123,7 @@ add_github_copilot() {
 }
 
 main() {
+    update_and_upgrade
     install_zsh
     install_oh_my_zsh
     install_miniconda
