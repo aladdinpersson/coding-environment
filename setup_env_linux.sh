@@ -1,5 +1,16 @@
 #!/bin/zsh
 
+update_and_upgrade() {
+    echo "Updating package lists..."
+    sudo apt-get update -y
+    echo "Upgrading installed packages..."
+    sudo apt-get upgrade -y
+    echo "installing cmake..." 
+    sudo apt install build-essential cmake -y
+
+
+}
+
 # Install zsh and make it your main shell
 install_zsh() {
     sudo apt install -y zsh
@@ -41,6 +52,13 @@ install_tmux() {
 
 # Install Neovim
 install_neovim() {
+    # Add the official Neovim PPA
+    sudo add-apt-repository -y ppa:neovim-ppa/stable
+    
+    # Update the package lists
+    sudo apt update
+    
+    # Install Neovim
     sudo apt install -y neovim
 }
 
