@@ -1,37 +1,42 @@
 # Coding Environment Setup
 
-This guide assumes you are setting up the environment on a Linux system.
+This guide will help you set up a coding environment on both Linux and macOS systems.
 
-## Neovim Setup
+## Initial Setup
 
-1. **Run the Initial Setup Script:**
+1. **Run the Setup Script:**
 
-   Start by executing the `linux.sh` script. This script should handle the installation of Neovim and other necessary packages.
+   For Linux, execute the `linux.sh` script:
 
    ```sh
    ./linux.sh
    ```
 
-   If on mac:
+   For macOS, execute the `mac.sh` script:
+
    ```sh
    ./mac.sh
    ```
 
-2. **Install Neovim Plugins:**
+   These scripts will install Neovim, tmux, and other necessary packages.
 
-   Open a file with Neovim to trigger the installation of plugins using Packer.
+## Neovim Configuration
+
+1. **Install Neovim Plugins:**
+
+   Trigger the installation of Neovim plugins by opening Neovim:
 
    ```sh
    nvim somefile
    ```
 
-   Inside Neovim, initiate the plugin installation:
+   Within Neovim, run the following command to synchronize the plugins:
 
    ```vim
    :PackerSync
    ```
 
-   Wait for the plugin synchronization to complete before proceeding.
+   Wait for the process to complete before exiting Neovim.
 
 ## Tmux Configuration
 
@@ -43,28 +48,42 @@ This guide assumes you are setting up the environment on a Linux system.
    tmux
    ```
 
-   Inside the tmux session, reload the configuration file:
+   Inside the tmux session, reload the configuration:
 
    ```tmux
-   Ctrl+a :source ~/.tmux.conf
+   Ctrl+b :source ~/.tmux.conf
    ```
+
+   (Note: The default prefix key in tmux is `Ctrl+b`, unless you have customized it to `Ctrl+a` or another combination.)
 
 2. **Install tmux Plugins:**
 
-   Still within the tmux session, install the plugins:
+   Install the plugins specified in `.tmux.conf`:
 
    ```tmux
-   Ctrl+a I
+   Ctrl+b I
    ```
 
-   This will fetch and install the plugins listed in your `.tmux.conf`.
+   This command will download and apply the tmux plugins.
 
-After completing these steps, your coding environment with Neovim and tmux should be ready to use. Make sure to customize your `linux.sh`, `.tmux.conf`, and Neovim configuration files to suit your preferences.
-```
+## GitHub Copilot Setup
 
-Then we need to setup:
-:Github Copilot
-github-copilot-cli auth
+1. **Authenticate GitHub Copilot CLI:**
 
-Finally run:
-echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.zshrc && source ~/.zshrc
+   Run the following command to authenticate the GitHub Copilot CLI:
+
+   ```sh
+   github-copilot-cli auth
+   ```
+
+   Follow the prompts to complete the authentication process.
+
+2. **Configure GitHub Copilot in Zsh:**
+
+   Add the GitHub Copilot CLI alias to your `.zshrc` and source it:
+
+   ```sh
+   echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.zshrc && source ~/.zshrc
+   ```
+
+After completing these steps, your coding environment, including Neovim, tmux, and GitHub Copilot, should be fully configured and ready for use. Customize your `linux.sh` or `mac.sh`, `.tmux.conf`, and Neovim configuration files as needed to tailor the environment to your preferences.
