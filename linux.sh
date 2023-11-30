@@ -28,14 +28,6 @@ install_miniconda() {
     # Download Miniconda installation script
     curl -LO $MINICONDA_URL
 
-    # Run the Miniconda installation script
-    bash $MINICONDA_SCRIPT -b -p $HOME/miniconda3
-
-    # Initialize Miniconda for Zsh
-    $HOME/miniconda3/bin/conda init zsh
-
-    # Remove the installation script
-    rm $MINICONDA_SCRIPT
 }
 
 install_latest_nodejs_and_npm() {
