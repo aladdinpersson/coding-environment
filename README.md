@@ -64,3 +64,7 @@ After completing these steps, your coding environment with Neovim and tmux shoul
 
 Then we need to setup:
 :Github Copilot
+github-copilot-cli auth
+
+Finally run:
+echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.zshrc && source ~/.zshrc
