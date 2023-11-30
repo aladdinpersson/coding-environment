@@ -1,17 +1,18 @@
 #!/bin/zsh
 
+# Update Homebrew and upgrade any already-installed formulae.
 update_and_upgrade() {
-    echo "Updating package lists..."
-    sudo apt-get update -y
+    echo "Updating Homebrew..."
+    brew update
     echo "Upgrading installed packages..."
-    sudo apt-get upgrade -y
-    echo "installing cmake..." 
-    sudo apt install build-essential cmake -y
+    brew upgrade
+    echo "Installing cmake..." 
+    brew install cmake
 }
 
 # Install zsh and make it your main shell
 install_zsh() {
-    sudo apt install -y zsh
+    brew install zsh
     chsh -s $(which zsh)
 }
 
@@ -22,8 +23,8 @@ install_oh_my_zsh() {
 
 # Install Miniconda
 install_miniconda() {
-    local MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
-    local MINICONDA_SCRIPT="Miniconda3-latest-Linux-x86_64.sh"
+    local MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+    local MINICONDA_SCRIPT="Miniconda3-latest-MacOSX-x86_64.sh"
     
     # Download Miniconda installation script
     curl -LO $MINICONDA_URL
@@ -38,40 +39,23 @@ install_miniconda() {
     rm $MINICONDA_SCRIPT
 }
 
+# Install Node.js and npm using Homebrew
 install_latest_nodejs_and_npm() {
-    NODE_MAJOR=20  # Replace with desired version (e.g., 16, 18, 20, 21)
-
-    # Update system package list and install prerequisites
-    sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg
-
-    # Set up the NodeSource repository
-    sudo mkdir -p /etc/apt/keyrings && \
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-
-    # Install Node.js and update npm to the latest version
-    sudo apt-get update && sudo apt-get install -y nodejs && sudo npm install -g npm@latest
+    brew install node
+    npm install -g npm@latest
 
     # Verify the installation
     echo "Node.js $(node --version) and npm $(npm --version) have been installed successfully."
 }
 
-
 # Install TMUX
 install_tmux() {
-    sudo apt install -y tmux
+    brew install tmux
 }
 
-# Install Neovim from the unstable PPA
+# Install Neovim
 install_neovim() {
-    # Add the official Neovim 'unstable' PPA
-    sudo add-apt-repository -y ppa:neovim-ppa/unstable
-    
-    # Update the package lists
-    sudo apt update
-    
-    # Install Neovim
-    sudo apt install -y neovim
+    brew install neovim
 }
 
 # Create symbolic links
@@ -126,7 +110,7 @@ reload_tmux_config() {
     fi
 }
 
-# Install Github Copilot to Neovim
+# Install GitHub Copilot to Neovim
 install_github_copilot() {
     local COPILOT_DIR="$HOME/.config/nvim/pack/github/start/copilot.vim"
     if [[ ! -d $COPILOT_DIR ]]; then
@@ -140,10 +124,16 @@ install_github_copilot() {
 # Install GitHub Copilot CLI
 install_copilot_cli() {
     echo "Installing GitHub Copilot CLI..."
-    sudo npm install -g @githubnext/github-copilot-cli
+    npm install -g @githubnext/github-copilot-cli
 }
 
 main() {
+    # Check if Homebrew is installed, install if not
+    if ! command -v brew >/dev/null; then
+        echo "Installing Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+
     update_and_upgrade
     install_zsh
     install_oh_my_zsh

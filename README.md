@@ -12,6 +12,11 @@ This guide assumes you are setting up the environment on a Linux system.
    ./linux.sh
    ```
 
+   If on mac:
+   ```sh
+   ./mac.sh
+   ```
+
 2. **Install Neovim Plugins:**
 
    Open a file with Neovim to trigger the installation of plugins using Packer.
@@ -57,10 +62,5 @@ This guide assumes you are setting up the environment on a Linux system.
 After completing these steps, your coding environment with Neovim and tmux should be ready to use. Make sure to customize your `linux.sh`, `.tmux.conf`, and Neovim configuration files to suit your preferences.
 ```
 
-Make sure to replace `somefile` with an actual file name or create a new file if you only want to open Neovim to install plugins.
-
-Additionally, ensure that the `linux.sh` script is executable. If it's not, you can make it executable with the following command:
-
-```sh
-chmod +x linux.sh
-```
+Then we need to setup:
+:Github Copilot
