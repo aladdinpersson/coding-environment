@@ -92,14 +92,8 @@ create_symbolic_links() {
 }
 
 # Clone the zsh-syntax-highlighting plugin
-clone_zsh_syntax_highlighting() {
-    local ZSH_SYNTAX_HIGHLIGHTING_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-    
-    if [[ ! -d $ZSH_SYNTAX_HIGHLIGHTING_PATH ]]; then
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_SYNTAX_HIGHLIGHTING_PATH
-    else
-        echo "zsh-syntax-highlighting directory already exists. Skipping clone."
-    fi
+install_zsh_syntax_highlighting() {
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
 
 # Install zsh-autosuggestions
@@ -158,7 +152,7 @@ main() {
     install_tmux
     install_neovim
     create_symbolic_links
-    clone_zsh_syntax_highlighting
+    install_zsh_syntax_highlighting
     install_zsh_autosuggestions
     install_powerlevel10k
     install_tpm
