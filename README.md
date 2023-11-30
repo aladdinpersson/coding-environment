@@ -1,6 +1,3 @@
-Certainly! Below is a cleaned-up version of your README.md with step-by-step instructions for setting up your Neovim coding environment, including running initial setup scripts, installing Neovim plugins with Packer, and configuring tmux.
-
-```markdown
 # Coding Environment Setup
 
 This guide assumes you are setting up the environment on a Linux system.
@@ -67,5 +64,3 @@ Additionally, ensure that the `linux.sh` script is executable. If it's not, you 
 ```sh
 chmod +x linux.sh
 ```
-
-This README.md provides a clear and structured guide for setting up your coding environment. Adjust any instructions as needed to match the specifics of your setup scripts and configuration.
