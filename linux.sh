@@ -88,6 +88,7 @@ create_symbolic_links() {
     ln -sfn "$DIR/.zshrc" "$HOME/.zshrc"
     ln -sfn "$DIR/.tmux.conf" "$HOME/.tmux.conf"
     ln -sfn "$DIR/nvim" "$HOME/.config/nvim"
+    ln -sfn "$DIR/.p10k.zsh" "$HOME/.p10k.zsh"
 }
 
 # Clone the zsh-syntax-highlighting plugin
