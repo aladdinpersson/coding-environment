@@ -46,7 +46,6 @@ keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available 
 keymap.set("n", "<leader>u", ":UndotreeToggle<CR>")
 
 -- github copilot
-
 keymap.set('i', "<C-g>", '<Plug>(copilot-suggest)')
 --keymap.set('i', '<M-G>', '<Plug>(copilot-previous)')
 --keymap.set("i", "<M-3>", "copilot#Accept('<CR>')", {noremap = true, silent = true, expr=true, replace_keycodes = false })

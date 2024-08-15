@@ -40,3 +40,7 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.iskeyword:append("-")
+
+--add persistent undo 
+opt.undofile = true
+opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
